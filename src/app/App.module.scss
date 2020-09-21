@@ -1,0 +1,13 @@
+@import "../Style/style.scss";
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+  transition: padding-top 200ms ease-in-out;
+  will-change: padding-top;
+
+  @include atMedium {
+    padding-top: 7rem;
+  }
+}

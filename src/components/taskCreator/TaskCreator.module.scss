@@ -1,0 +1,104 @@
+@import "../../Style/style.scss";
+
+.TaskCreator {
+  padding: $space-medium;
+  width: 100%;
+  max-width: 100%;
+  min-height: 9rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include atMedium {
+    width: 50rem;
+  }
+
+  @include atLarge {
+    width: 80rem;
+  }
+}
+
+.TaskModal {
+  position: fixed;
+  background-color: white;
+  padding: $space-medium;
+  box-shadow: 0 5.8px 2.2px rgba(0, 0, 0, 0.134),
+    0 32.7px 35.3px rgba(0, 0, 0, 0.248),
+    0 42.5px 40px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.172),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.286),
+    0 100px 80px rgba(0, 0, 0, 0.32);
+}
+
+.Caption {
+  font-size: 2.4rem;
+  margin-bottom: $space-medium;
+
+  @include atMedium {
+    font-size: 3.6rem;
+  }
+}
+
+.Textarea {
+  min-width: 100%;
+  max-width: 26rem;
+  min-height: 20rem;
+  max-height: 40rem;
+  margin-bottom: $space-medium;
+
+  @include atMedium {
+    max-width: 100%;
+  }
+}
+
+.Button {
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  width: 15rem;
+  height: 5rem;
+  font-size: 1.8rem;
+  background-color: $btn;
+  transition: background-color 150ms ease-in-out;
+  will-change: background-color;
+
+  &:hover {
+    background-color: $btn-hover;
+  }
+}
+
+.ModalCloseButton {
+  position: absolute;
+  top: -1.5rem;
+  left: calc(100% - 1.5rem);
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  position: relative;
+  border-bottom: solid 0.2rem #222;
+  border-left: solid 0.2rem #222;
+  transition: background-color 200ms ease-in-out;
+  will-change: background-color;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transform: translate(-50%, -50%) rotate(45deg);
+    top: 50%;
+    left: 50%;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%)
+      rotate(-45deg);
+  }
+
+  &:hover {
+    background-color: $btn-hover;
+  }
+}

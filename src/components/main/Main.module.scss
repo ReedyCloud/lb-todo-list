@@ -1,0 +1,19 @@
+@import "../../Style/style.scss";
+.Main {
+  background-color: $red;
+  padding: 0 $space-medium;
+  min-height: calc(100vh - 25rem);
+
+  @include atMedium {
+    min-height: calc(100vh - 27rem);
+  }
+
+  @include atLarge {
+    width: 99.2rem;
+    padding: 0;
+  }
+
+  @include atXLarge {
+    width: 128rem;
+  }
+}
