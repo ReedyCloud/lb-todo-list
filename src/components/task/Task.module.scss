@@ -1,6 +1,45 @@
+@import "../../Style/style.scss";
+
 .Task {
+  border: 0.2rem solid #000;
+  padding: $space-small;
+  margin-bottom: $space-medium;
 }
 
 .TaskDone {
   background-color: green;
+}
+
+.Text {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: $space-medium;
+}
+
+.Controls {
+  display: flex;
+  flex-direction: column;
+
+  @include atMedium {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.Button {
+  appearance: none;
+  border: none;
+  padding: $space-small $space-medium;
+  margin: $space-small $space-small;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+  will-change: background-color;
+
+  @include atMedium {
+    margin: 0 $space-small;
+  }
+
+  &:hover {
+    background-color: $light-blue;
+  }
 }

@@ -4,6 +4,7 @@ import {
   GET_TASKS,
   TASKS_FAIL,
   TASKS_SUCCESS,
+  ADD_TASK,
 } from "../types/TasksActionTypes";
 
 interface initialStateI {
@@ -30,6 +31,11 @@ const tasksReducer = (
       return {
         ...state,
         loading: true,
+      };
+    case ADD_TASK:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload.task],
       };
     case TASKS_SUCCESS:
       return {

@@ -1,10 +1,27 @@
 import React, { useState } from "react";
+import { TaskType } from "../../store/types/TasksActionTypes";
 
 import styles from "./TaskCreator.module.scss";
 
-const TaskCreator = () => {
+interface CreatorProps {
+  onAdd: (task: TaskType) => void;
+}
+
+const TaskCreator = ({ onAdd }: CreatorProps) => {
   const [text, setText] = useState("");
   const [isCreatorOpen, setCreatorOpen] = useState(false);
+
+  const onAddTask = () => {
+    if (text.length > 10) {
+      setCreatorOpen(false);
+      onAdd({
+        isDone: false,
+        text: text,
+      });
+    } else {
+      alert("write longer task");
+    }
+  };
 
   return (
     <div className={styles.TaskCreator}>
@@ -35,7 +52,9 @@ const TaskCreator = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button className={styles.Button}>Create Me</button>
+          <button onClick={onAddTask} className={styles.Button}>
+            Create Me
+          </button>
         </div>
       )}
     </div>

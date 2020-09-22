@@ -1,11 +1,18 @@
 @import "../../Style/style.scss";
 .Main {
-  background-color: $red;
-  padding: 0 $space-medium;
+  background-color: $main-bg;
   min-height: calc(100vh - 25rem);
+  width: 100%;
+  padding: 0 $space-medium;
+
+  @include atSmall {
+    width: 60rem;
+  }
 
   @include atMedium {
     min-height: calc(100vh - 27rem);
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
 
   @include atLarge {
@@ -15,5 +22,25 @@
 
   @include atXLarge {
     width: 128rem;
+  }
+}
+
+.TaskLists {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+
+  @include atMedium {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+.TaskList {
+  margin: $space-small;
+  border: 0.3rem solid $red;
+  padding: $space-small;
+
+  &:last-child {
+    border-color: $green;
   }
 }

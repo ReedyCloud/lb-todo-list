@@ -9,12 +9,18 @@ interface iProps {
 
 const Task = ({ isDone, text }: iProps) => {
   return (
-    <div className={isDone ? styles.TaskDone : styles.Task}>
-      <div>{text}</div>
-      <div>
-        <button> delete task</button>
-        <button> edit task</button>
-        <button>{isDone ? "finish" : "unfinish"}</button>
+    <div
+      className={
+        isDone ? [styles.TaskDone, styles.Task].join(" ") : styles.Task
+      }
+    >
+      <div className={styles.Text}>{text}</div>
+      <div className={styles.Controls}>
+        <button className={styles.Button}> delete task</button>
+        <button className={styles.Button}> edit task</button>
+        <button className={styles.Button}>
+          {!isDone ? "finish" : "unfinish"}
+        </button>
       </div>
     </div>
   );
