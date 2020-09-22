@@ -12,7 +12,9 @@
   @include atMedium {
     min-height: calc(100vh - 27rem);
     display: grid;
+    padding: 0;
     grid-template-rows: auto 1fr;
+    width: 72rem;
   }
 
   @include atLarge {
@@ -23,6 +25,10 @@
   @include atXLarge {
     width: 128rem;
   }
+
+  @include atHuge {
+    width: 144rem;
+  }
 }
 
 .TaskLists {
@@ -30,17 +36,17 @@
   grid-template-rows: repeat(2, auto);
 
   @include atMedium {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     grid-template-rows: auto;
   }
 }
 
 .TaskList {
   margin: $space-small;
-  border: 0.3rem solid $red;
-  padding: $space-small;
+  // border: 0.3rem solid $red;
+  padding: $space-medium;
 
   &:last-child {
-    border-color: $green;
+    // border-color: $green;
   }
 }

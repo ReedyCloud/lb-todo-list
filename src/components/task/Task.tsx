@@ -31,12 +31,14 @@ const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
     if (!isEditorOpen) {
       setIsEditorOpen(true);
       setEditedText(text);
-    } else {
+    } else if (isEditorOpen && editedText !== text) {
       onSetTask({
         id: id,
         isDone: isDone,
         text: editedText,
       });
+      setIsEditorOpen(false);
+    } else {
       setIsEditorOpen(false);
     }
   };
@@ -52,6 +54,7 @@ const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
           <div className={styles.Text}>{text}</div>
         ) : (
           <textarea
+            className={styles.Textarea}
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
           />
@@ -61,6 +64,7 @@ const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
         <button onClick={onDelete} className={styles.Button}>
           delete task
         </button>
+        {/* considered renderind that button only if task is unfinished */}
         <button onClick={onOpenEditor} className={styles.Button}>
           {isEditorOpen ? "Apply Changes" : "Edit Note"}
         </button>
