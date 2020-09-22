@@ -19,6 +19,7 @@ const TaskCreator = ({ onAdd }: CreatorProps) => {
         text: text,
         id: "",
       });
+      setText("");
     } else {
       alert("write longer task");
     }

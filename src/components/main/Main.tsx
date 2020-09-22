@@ -4,7 +4,12 @@ import { RootStore } from "../../store/store";
 import Task from "../task/Task";
 import Loader from "../loader/Loader";
 import TaskCreator from "../taskCreator/TaskCreator";
-import { addTask, setTask, getTasks } from "../../store/actions/TasksActions";
+import {
+  addTask,
+  setTask,
+  getTasks,
+  deleteTask,
+} from "../../store/actions/TasksActions";
 
 import styles from "./Main.module.scss";
 import { TaskType } from "../../store/types/TasksActionTypes";
@@ -25,6 +30,10 @@ const Main = () => {
     dispatch(setTask(task));
   };
 
+  const handleDeleteTask = (id: string) => {
+    dispatch(deleteTask(id));
+  };
+
   return (
     <div className={styles.Main}>
       <TaskCreator onAdd={handleAddTask} />
@@ -40,6 +49,7 @@ const Main = () => {
               .map((t) => {
                 return (
                   <Task
+                    onDeleteTask={handleDeleteTask}
                     onSetTask={handleSetTask}
                     key={t.id}
                     isDone={t.isDone}
@@ -57,6 +67,7 @@ const Main = () => {
               .map((t) => {
                 return (
                   <Task
+                    onDeleteTask={handleDeleteTask}
                     onSetTask={handleSetTask}
                     key={t.id}
                     isDone={t.isDone}

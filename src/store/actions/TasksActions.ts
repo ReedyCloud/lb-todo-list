@@ -7,9 +7,31 @@ import {
   TaskType,
   ADD_TASK,
   SET_TASK,
+  DELETE_TASK,
 } from "../types/TasksActionTypes";
 
 const baseAPI: string = "https://lb-todo-list.firebaseio.com/";
+
+export const deleteTask = (id: string) => async (
+  dispatch: Dispatch<TaskDispatchTypes>
+) => {
+  try {
+    fetch(`${baseAPI}tasks/${id}.json`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    dispatch({
+      type: DELETE_TASK,
+      payload: {
+        id: id,
+      },
+    });
+  } catch (e) {
+    dispatch({
+      type: TASKS_FAIL,
+    });
+  }
+};
 
 export const setTask = (task: TaskType) => async (
   dispatch: Dispatch<TaskDispatchTypes>

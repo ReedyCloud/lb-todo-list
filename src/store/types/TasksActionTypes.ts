@@ -3,6 +3,7 @@ export const TASKS_SUCCESS = "TASKS_SUCCESS";
 export const TASKS_FAIL = "TASKS_FAIL";
 export const ADD_TASK = "ADD_TASK";
 export const SET_TASK = "SET_TASK";
+export const DELETE_TASK = "DELETE_TASK";
 
 export type TaskType = {
   id: string;
@@ -38,9 +39,17 @@ export interface addTask {
   };
 }
 
+export interface deleteTask {
+  type: typeof DELETE_TASK;
+  payload: {
+    id: string;
+  };
+}
+
 export type TaskDispatchTypes =
   | getTasks
   | tasksSuccess
   | tasksFail
   | addTask
+  | deleteTask
   | setTask;

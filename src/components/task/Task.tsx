@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TaskType } from "../../store/types/TasksActionTypes";
 
 import styles from "./Task.module.scss";
@@ -8,16 +8,37 @@ interface iProps {
   text: string;
   id: string;
   onSetTask: (task: TaskType) => void;
+  onDeleteTask: (id: string) => void;
 }
 
-const Task = ({ id, isDone, text, onSetTask }: iProps) => {
+const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
+  const [editedText, setEditedText] = useState("");
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+
   const onSet = () => {
-    console.log(id, isDone, text);
     onSetTask({
       id: id,
       isDone: !isDone,
       text: text,
     });
+  };
+
+  const onDelete = () => {
+    onDeleteTask(id);
+  };
+
+  const onOpenEditor = () => {
+    if (!isEditorOpen) {
+      setIsEditorOpen(true);
+      setEditedText(text);
+    } else {
+      onSetTask({
+        id: id,
+        isDone: isDone,
+        text: editedText,
+      });
+      setIsEditorOpen(false);
+    }
   };
 
   return (
@@ -26,10 +47,23 @@ const Task = ({ id, isDone, text, onSetTask }: iProps) => {
         isDone ? [styles.TaskDone, styles.Task].join(" ") : styles.Task
       }
     >
-      <div className={styles.Text}>{text}</div>
+      <div>
+        {!isEditorOpen ? (
+          <div className={styles.Text}>{text}</div>
+        ) : (
+          <textarea
+            value={editedText}
+            onChange={(e) => setEditedText(e.target.value)}
+          />
+        )}
+      </div>
       <div className={styles.Controls}>
-        <button className={styles.Button}> delete task</button>
-        <button className={styles.Button}> edit task</button>
+        <button onClick={onDelete} className={styles.Button}>
+          delete task
+        </button>
+        <button onClick={onOpenEditor} className={styles.Button}>
+          {isEditorOpen ? "Apply Changes" : "Edit Note"}
+        </button>
         <button onClick={onSet} className={styles.Button}>
           {!isDone ? "finish" : "unfinish"}
         </button>
