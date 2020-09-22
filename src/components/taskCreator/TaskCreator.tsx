@@ -4,10 +4,7 @@ import styles from "./TaskCreator.module.scss";
 
 const TaskCreator = () => {
   const [text, setText] = useState("");
-  const [
-    isCreatorOpen,
-    setCreatorOpen,
-  ] = useState(false);
+  const [isCreatorOpen, setCreatorOpen] = useState(false);
 
   return (
     <div className={styles.TaskCreator}>
@@ -19,10 +16,7 @@ const TaskCreator = () => {
       */}
 
       {!isCreatorOpen && (
-        <button
-          className={styles.Button}
-          onClick={() => setCreatorOpen(true)}
-        >
+        <button className={styles.Button} onClick={() => setCreatorOpen(true)}>
           Create New Task
         </button>
       )}
@@ -33,21 +27,15 @@ const TaskCreator = () => {
             className={styles.ModalCloseButton}
             onClick={() => setCreatorOpen(false)}
           ></div>
-          <div className={styles.Caption}>
-            Create New Task!
-          </div>
+          <div className={styles.Caption}>Create New Task!</div>
           <textarea
             className={styles.Textarea}
             name="task-text"
             id="task-text"
             value={text}
-            onChange={(e) =>
-              setText(e.target.value)
-            }
+            onChange={(e) => setText(e.target.value)}
           />
-          <button className={styles.Button}>
-            Create Me
-          </button>
+          <button className={styles.Button}>Create Me</button>
         </div>
       )}
     </div>

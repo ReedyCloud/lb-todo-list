@@ -1,24 +1,34 @@
-import React, {
-  useState,
-  useEffect,
-} from "react";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "../../store/store";
 import Task from "../task/Task";
+import Loader from "../loader/Loader";
 import TaskCreator from "../taskCreator/TaskCreator";
+import { getTasks } from "../../store/actions/TasksActions";
 
 import styles from "./Main.module.scss";
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const tasksState = useSelector((state: RootStore) => state.tasks);
+  const handleGet = () => dispatch(getTasks());
+
+  useEffect(() => {
+    dispatch(getTasks());
+  }, []);
+
   return (
     <div className={styles.Main}>
       <TaskCreator />
-      <Task
-        isDone={false}
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, eaque
-         ullam! Debitis cum ipsam dignissimos, odio magnam placeat sed maxime."
-      />
-      <Task isDone={true} text="xd" />
-      jestem cialem
+      <div onClick={handleGet}>siema ct</div>
+      {tasksState.loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <div>tasks undone</div>
+          <div> tasks done</div>
+        </div>
+      )}
     </div>
   );
 };
