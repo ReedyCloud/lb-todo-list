@@ -18,6 +18,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const tasksState = useSelector((state: RootStore) => state.tasks);
 
+  //#region dispatch handlers
   useEffect(() => {
     dispatch(getTasks());
   }, []);
@@ -33,6 +34,8 @@ const Main = () => {
   const handleDeleteTask = (id: string) => {
     dispatch(deleteTask(id));
   };
+
+  //#endregion
 
   return (
     <div className={styles.Main}>

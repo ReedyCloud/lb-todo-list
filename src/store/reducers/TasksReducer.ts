@@ -58,15 +58,16 @@ const tasksReducer = (
         ...state,
         tasks: [...state.tasks, action.payload.task],
       };
-    case SET_TASK:
-      return setTask(state, action.payload.task);
-    case DELETE_TASK:
-      return deleteTask(state, action.payload.id);
     case TASKS_SUCCESS:
       return {
         loading: false,
         tasks: action.payload.tasks,
       };
+    case SET_TASK:
+      return setTask(state, action.payload.task);
+    case DELETE_TASK:
+      return deleteTask(state, action.payload.id);
+
     default:
       return state;
   }

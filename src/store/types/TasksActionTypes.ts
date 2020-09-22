@@ -1,3 +1,4 @@
+// I dont really like that way of storing consts when TypeScript has Enums
 export const GET_TASKS = "GET_TASKS";
 export const TASKS_SUCCESS = "TASKS_SUCCESS";
 export const TASKS_FAIL = "TASKS_FAIL";

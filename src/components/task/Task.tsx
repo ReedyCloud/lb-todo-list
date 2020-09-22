@@ -15,6 +15,8 @@ const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
   const [editedText, setEditedText] = useState("");
   const [isEditorOpen, setIsEditorOpen] = useState(false);
 
+  //#region event hadlers
+
   const onSet = () => {
     onSetTask({
       id: id,
@@ -42,6 +44,8 @@ const Task = ({ id, isDone, text, onSetTask, onDeleteTask }: iProps) => {
       setIsEditorOpen(false);
     }
   };
+
+  //#endregion
 
   return (
     <div

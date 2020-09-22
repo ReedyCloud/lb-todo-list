@@ -1,5 +1,8 @@
+@import "../../Style/style.scss";
+
 .Footer {
   width: 100%;
-  background-color: green;
+  background-color: $backdrop;
   min-height: 20rem;
+  font-size: 3rem;
 }

@@ -21,6 +21,7 @@ const TaskCreator = ({ onAdd }: CreatorProps) => {
       });
       setText("");
     } else {
+      // if I had time Id have used more user friendly error handling
       alert("write longer task");
     }
   };
