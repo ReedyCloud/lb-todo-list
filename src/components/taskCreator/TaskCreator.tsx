@@ -17,6 +17,7 @@ const TaskCreator = ({ onAdd }: CreatorProps) => {
       onAdd({
         isDone: false,
         text: text,
+        id: "",
       });
     } else {
       alert("write longer task");

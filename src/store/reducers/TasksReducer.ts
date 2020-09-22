@@ -5,6 +5,7 @@ import {
   TASKS_FAIL,
   TASKS_SUCCESS,
   ADD_TASK,
+  SET_TASK,
 } from "../types/TasksActionTypes";
 
 interface initialStateI {
@@ -15,6 +16,17 @@ interface initialStateI {
 const initialState: initialStateI = {
   loading: false,
   tasks: [],
+};
+
+const setTask = (state: initialStateI, payload: TaskType) => {
+  const newTasks: TaskType[] = state.tasks.map((task) => {
+    if (task.id === payload.id) return payload;
+    return task;
+  });
+  return {
+    ...state,
+    tasks: newTasks,
+  };
 };
 
 const tasksReducer = (
@@ -37,6 +49,8 @@ const tasksReducer = (
         ...state,
         tasks: [...state.tasks, action.payload.task],
       };
+    case SET_TASK:
+      return setTask(state, action.payload.task);
     case TASKS_SUCCESS:
       return {
         loading: false,

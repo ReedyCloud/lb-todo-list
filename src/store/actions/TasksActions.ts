@@ -6,9 +6,36 @@ import {
   TASKS_FAIL,
   TaskType,
   ADD_TASK,
+  SET_TASK,
 } from "../types/TasksActionTypes";
 
 const baseAPI: string = "https://lb-todo-list.firebaseio.com/";
+
+export const setTask = (task: TaskType) => async (
+  dispatch: Dispatch<TaskDispatchTypes>
+) => {
+  try {
+    fetch(`${baseAPI}tasks/${task.id}.json`, {
+      method: "PUT",
+      body: JSON.stringify(task),
+      headers: { "Content-Type": "application/json" },
+    });
+    dispatch({
+      type: SET_TASK,
+      payload: {
+        task: {
+          id: task.id,
+          isDone: task.isDone,
+          text: task.text,
+        },
+      },
+    });
+  } catch (e) {
+    dispatch({
+      type: TASKS_FAIL,
+    });
+  }
+};
 
 export const addTask = (task: TaskType) => async (
   dispatch: Dispatch<TaskDispatchTypes>
@@ -21,7 +48,7 @@ export const addTask = (task: TaskType) => async (
         headers: { "Content-Type": "application/json" },
       })
     ).json();
-    console.log(responseData.name);
+
     dispatch({
       type: ADD_TASK,
       payload: {

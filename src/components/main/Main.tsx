@@ -4,7 +4,7 @@ import { RootStore } from "../../store/store";
 import Task from "../task/Task";
 import Loader from "../loader/Loader";
 import TaskCreator from "../taskCreator/TaskCreator";
-import { addTask, getTasks } from "../../store/actions/TasksActions";
+import { addTask, setTask, getTasks } from "../../store/actions/TasksActions";
 
 import styles from "./Main.module.scss";
 import { TaskType } from "../../store/types/TasksActionTypes";
@@ -21,6 +21,10 @@ const Main = () => {
     dispatch(addTask(task));
   };
 
+  const handleSetTask = (task: TaskType) => {
+    dispatch(setTask(task));
+  };
+
   return (
     <div className={styles.Main}>
       <TaskCreator onAdd={handleAddTask} />
@@ -34,17 +38,32 @@ const Main = () => {
                 return !task.isDone;
               })
               .map((t) => {
-                return <Task key={t.id} isDone={t.isDone} text={t.text} />;
+                return (
+                  <Task
+                    onSetTask={handleSetTask}
+                    key={t.id}
+                    isDone={t.isDone}
+                    text={t.text}
+                    id={t.id}
+                  />
+                );
               })}
           </div>
           <div className={styles.TaskList}>
-            {" "}
             {tasksState.tasks
               .filter((task) => {
                 return task.isDone;
               })
               .map((t) => {
-                return <Task key={t.id} isDone={t.isDone} text={t.text} />;
+                return (
+                  <Task
+                    onSetTask={handleSetTask}
+                    key={t.id}
+                    isDone={t.isDone}
+                    text={t.text}
+                    id={t.id}
+                  />
+                );
               })}
           </div>
         </div>

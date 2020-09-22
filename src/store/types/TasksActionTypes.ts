@@ -2,9 +2,10 @@ export const GET_TASKS = "GET_TASKS";
 export const TASKS_SUCCESS = "TASKS_SUCCESS";
 export const TASKS_FAIL = "TASKS_FAIL";
 export const ADD_TASK = "ADD_TASK";
+export const SET_TASK = "SET_TASK";
 
 export type TaskType = {
-  id?: string;
+  id: string;
   text: string;
   isDone: boolean;
 };
@@ -14,6 +15,13 @@ export interface getTasks {
 }
 export interface tasksFail {
   type: typeof TASKS_FAIL;
+}
+
+export interface setTask {
+  type: typeof SET_TASK;
+  payload: {
+    task: TaskType;
+  };
 }
 
 export interface tasksSuccess {
@@ -30,4 +38,9 @@ export interface addTask {
   };
 }
 
-export type TaskDispatchTypes = getTasks | tasksSuccess | tasksFail | addTask;
+export type TaskDispatchTypes =
+  | getTasks
+  | tasksSuccess
+  | tasksFail
+  | addTask
+  | setTask;
